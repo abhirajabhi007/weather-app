@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>weather</title>
+  <style>
+    /* styles.css */
+
+    /* Body Styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('https://images.unsplash.com/photo-1620763049765-27475b5ff3fb?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+      width: 1000px;
+      /* Path to your background image */
+      background-size: cover;
+      background-position: center;
+      color: #333;
+     
+      /* Text color */
+    }
+
+    /* Navigation Styles */
+    nav {
+      background: rgba(201, 47, 47, 0.8);
+      
+      color: #000;
+      
+    }
+
+    nav h1 {
+      margin: 0;
+      padding: 20px;
+      
+      
+    }
+
+    /* Form Styles */
+    form {
+      margin-top: 50px;
+    }
+
+    input[type="text"] {
+      width: 70%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    input[type="submit"] {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      /* Button color */
+      color: #fff;
+      /* Text color */
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    /* Result Styles */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 10px;
+    }
+
+    /* Center align table */
+    table {
+      margin: auto;
+    }
+
+    /* Center align result div */
+    .result {
+      text-align: center;
+    }
+  </style>
+  <!-- Latest compiled and minified CSS -->
+  <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"-->
+</head>
+
+<body>
+  <nav class="row" style="background: rgb(237, 231, 231); color: rgb(0, 0, 0);">
+    <h1 class="col-md-3 text-center" style="text-align: center;"></h1>WEATHER</h1>
+  </nav>
+  <br />
+  <br />
+  <div class="container">
+    <div class="row justify-content-center">
+      <form method="post" class="col-md-6">
+        {% csrf_token %}
+        <div class="input-group">
+          <input type="text" class="form-control" name="city" placeholder="Search">
+          <div class="input-group-btn">
+            <button class="btn success" type="submit" width="10px" height="10px">
+              <i class="glyphicon glyphicon-search">Submit</i>
+            </button>
+          </div>
+      </form>
+    </div>
+  </div>
+  </div>
+  <div class="container">
+    <div class="row justify-content-center">
+      {% if country_code and coordinate and temp and pressure and humidity %}
+      <div class="col-md-6">
+        <div class="result" align="center">
+          <table>
+            <h3>
+              <tr>
+                <td>Country Code</td>
+                <td>{{country_code}}</td>
+              </tr>
+              <tr>
+                <td>Coordinate</td>
+                <td>: {{coordinate}}</td>
+              </tr>
+              <tr>
+                <td>Temprature</td>
+                <td>: {{temp}}</td>
+              </tr>
+              <tr>
+                <td>Pressure</td>
+                <td>: {{pressure}} </td>
+              </tr>
+              <tr>
+                <td>Humidity</td>
+                <td>: {{humidity}}</td>
+              </tr>
+            </h3>
+          </table>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</body>
+
+</html>
